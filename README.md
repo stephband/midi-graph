@@ -1,4 +1,13 @@
-midi-graph
-==========
+# midi-graph
 
-A live graph of MIDI events in the browser.
+A live graph of MIDI events for the browser.
+
+<!--## Installation
+
+Install with [component(1)](http://component.io):
+
+$ component install stephband/midi-graph-->
+
+## License
+
+MIT
