@@ -53,9 +53,9 @@
 /* .index */
 
 .note_index {
-	width: 24rem;
 	line-height: 159px;
 	border-bottom: 1px solid #999999;
+	margin-bottom: 3rem;
 
 	/*border-bottom: 1px solid #202020;
 	background-color: #444444;
