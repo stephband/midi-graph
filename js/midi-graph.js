@@ -23,7 +23,7 @@
 
 		var node = options.node ?
 		    	typeof options.node === 'string' ?
-		    	document.querySelectorAll(options.node) : 
+		    	document.querySelector(options.node) : 
 		    	options.node :
 		    	document.getElementById('midi-graph') ;
 
