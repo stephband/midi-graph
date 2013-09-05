@@ -1,132 +1,68 @@
-window.app_midi = new App('#midi-graph');
+(function(undefined) {
 
-window.app_midi.data.notes = [
-	{ number: 0, note: 'C' },
-	{ number: 1, note: 'C♯' },
-	{ number: 2, note: 'D' },
-	{ number: 3, note: 'E♭' },
-	{ number: 4, note: 'E' },
-	{ number: 5, note: 'F' },
-	{ number: 6, note: 'F♯' },
-	{ number: 7, note: 'G' },
-	{ number: 8, note: 'A♯' },
-	{ number: 9, note: 'A' },
-	{ number: 10, note: 'B♭' },
-	{ number: 11, note: 'B' },
-	{ number: 12, note: 'C' },
-	{ number: 13, note: 'C♯' },
-	{ number: 14, note: 'D' },
-	{ number: 15, note: 'E♭' },
-	{ number: 16, note: 'E' },
-	{ number: 17, note: 'F' },
-	{ number: 18, note: 'F♯' },
-	{ number: 19, note: 'G' },
-	{ number: 20, note: 'A♯' },
-	{ number: 21, note: 'A' },
-	{ number: 22, note: 'B♭' },
-	{ number: 23, note: 'B' },
-	{ number: 24, note: 'C' },
-	{ number: 25, note: 'C♯' },
-	{ number: 26, note: 'D' },
-	{ number: 27, note: 'E♭' },
-	{ number: 28, note: 'E' },
-	{ number: 29, note: 'F' },
-	{ number: 30, note: 'F♯' },
-	{ number: 31, note: 'G' },
-	{ number: 32, note: 'A♯' },
-	{ number: 33, note: 'A' },
-	{ number: 34, note: 'B♭' },
-	{ number: 35, note: 'B' },
-	{ number: 36, note: 'C' },
-	{ number: 37, note: 'C♯' },
-	{ number: 38, note: 'D' },
-	{ number: 39, note: 'E♭' },
-	{ number: 40, note: 'E' },
-	{ number: 41, note: 'F' },
-	{ number: 42, note: 'F♯' },
-	{ number: 43, note: 'G' },
-	{ number: 44, note: 'A♯' },
-	{ number: 45, note: 'A' },
-	{ number: 46, note: 'B♭' },
-	{ number: 47, note: 'B' },
-	{ number: 48, note: 'C' },
-	{ number: 49, note: 'C♯' },
-	{ number: 50, note: 'D' },
-	{ number: 51, note: 'E♭' },
-	{ number: 52, note: 'E' },
-	{ number: 53, note: 'F' },
-	{ number: 54, note: 'F♯' },
-	{ number: 55, note: 'G' },
-	{ number: 56, note: 'A♯' },
-	{ number: 57, note: 'A' },
-	{ number: 58, note: 'B♭' },
-	{ number: 59, note: 'B' },
-	{ number: 60, note: 'C' },
-	{ number: 61, note: 'C♯' },
-	{ number: 62, note: 'D' },
-	{ number: 63, note: 'E♭' },
-	{ number: 64, note: 'E' },
-	{ number: 65, note: 'F' },
-	{ number: 66, note: 'F♯' },
-	{ number: 67, note: 'G' },
-	{ number: 68, note: 'A♯' },
-	{ number: 69, note: 'A' },
-	{ number: 70, note: 'B♭' },
-	{ number: 71, note: 'B' },
-	{ number: 72, note: 'C' },
-	{ number: 73, note: 'C♯' },
-	{ number: 74, note: 'D' },
-	{ number: 75, note: 'E♭' },
-	{ number: 76, note: 'E' },
-	{ number: 77, note: 'F' },
-	{ number: 78, note: 'F♯' },
-	{ number: 79, note: 'G' },
-	{ number: 80, note: 'A♯' },
-	{ number: 81, note: 'A' },
-	{ number: 82, note: 'B♭' },
-	{ number: 83, note: 'B' },
-	{ number: 84, note: 'C' },
-	{ number: 85, note: 'C♯' },
-	{ number: 86, note: 'D' },
-	{ number: 87, note: 'E♭' },
-	{ number: 88, note: 'E' },
-	{ number: 89, note: 'F' },
-	{ number: 90, note: 'F♯' },
-	{ number: 91, note: 'G' },
-	{ number: 92, note: 'A♯' },
-	{ number: 93, note: 'A' },
-	{ number: 94, note: 'B♭' },
-	{ number: 95, note: 'B' },
-	{ number: 96, note: 'C' },
-	{ number: 97, note: 'C♯' },
-	{ number: 98, note: 'D' },
-	{ number: 99, note: 'E♭' },
-	{ number: 100, note: 'E' },
-	{ number: 101, note: 'F' },
-	{ number: 102, note: 'F♯' },
-	{ number: 103, note: 'G' },
-	{ number: 104, note: 'A♯' },
-	{ number: 105, note: 'A' },
-	{ number: 106, note: 'B♭' },
-	{ number: 107, note: 'B' },
-	{ number: 108, note: 'C' },
-	{ number: 109, note: 'C♯' },
-	{ number: 110, note: 'D' },
-	{ number: 111, note: 'E♭' },
-	{ number: 112, note: 'E' },
-	{ number: 113, note: 'F' },
-	{ number: 114, note: 'F♯' },
-	{ number: 115, note: 'G' },
-	{ number: 116, note: 'A♯' },
-	{ number: 117, note: 'A' },
-	{ number: 118, note: 'B♭' },
-	{ number: 119, note: 'B' },
-	{ number: 120, note: 'C' },
-	{ number: 121, note: 'C♯' },
-	{ number: 122, note: 'D' },
-	{ number: 123, note: 'E♭' },
-	{ number: 124, note: 'E' },
-	{ number: 125, note: 'F' },
-	{ number: 126, note: 'F♯' },
-	{ number: 127, note: 'G' }
-];
+	function isNoteOff(data) {
+		return data[0] > 127 && data[0] < 144 ;
+	}
+
+	function isNoteOn(data) {
+		return data[0] > 143 && data[0] < 160 ;
+	}
+
+	function updateOn(node, data) {
+		node.classList.add('on');
+		node.style.height = data[2] + 'px'; //(data[2] * 100 / 127) + '%';
+	}
+
+	function updateOff(node, data) {
+		node.classList.remove('on');
+		node.style.height = 0;
+	}
+
+	function MIDIGraph(options) {
+		var graph = Object.create(Object.prototype);
+
+		var node = options.node ?
+		    	typeof options.node === 'string' ?
+		    	document.querySelectorAll(options.node) : 
+		    	options.node :
+		    	document.getElementById('midi-graph') ;
+
+		var nodes = node.querySelectorAll('.note_block');
+
+		if (nodes.length !== 128) {
+			throw Error('128 note blocks needed.');
+			return;
+		}
+
+		graph.in = function(e) {
+			// Crudely filter for notes at the moment
+
+			if (isNoteOn(e.data)) {
+				if (e.data[2] === 0) {
+					// Actually a note off
+					updateOff(nodes[e.data[1]], e.data);
+					return;
+				}
+
+				updateOn(nodes[e.data[1]], e.data);
+				return;
+			}
+			
+			if (isNoteOff(e.data)) {
+				updateOff(nodes[e.data[1]], e.data);
+				return;
+			}
+		};
+
+		return graph;
+	}
+
+	// Export the Node constructor
+	if (this.window && !window.exports) {
+		window.MIDIGraph = MIDIGraph;
+	}
+	else {
+		module.name = 'midi-graph';
+		exports = MIDIGraph;
+	}
+})();

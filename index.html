@@ -1,0 +1,694 @@
+<link rel="stylesheet" href="../bolt/css/bolt.classes.css" />
+<link rel="stylesheet" href="css/midi-graph.light.css" />
+
+<h1>MIDI Graph</h1>
+
+<p>Open the console to see tests</p>
+
+<!-- Sometime soon, we're going to replace this list with a canvas -->
+<!--canvas data-view="midi-graph"></canvas-->
+
+<ul class="note_index inline_index index" id="midi-graph">
+	<li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">A</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">B</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">C♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">D</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E♭</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">E</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">F♯</div>
+		</div>
+	</li
+	><li>
+		<div class="note_block block">
+			<div class="note_text text">G</div>
+		</div>
+	</li>
+</ul>
+
+
+<script src="js/midi-graph.js"></script>
+<script>
+
+console.group('Testing MIDIGraph...');
+
+(function() {
+	var node = document.getElementById('midi-graph');
+
+	var midiGraph = MIDIGraph({
+		node: node
+	});
+
+	midiGraph.in({ data: [144,20,80] });
+	midiGraph.in({ data: [144,40,0] });
+	midiGraph.in({ data: [144,60,100] });
+	midiGraph.in({ data: [144,80,100] });
+	midiGraph.in({ data: [128,20,80] });
+
+	console.assert(node.querySelectorAll('.on').length === 2,
+	              'There should be 2 notes active');
+})();
+
+console.log('...tests complete');
+console.groupEnd();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
