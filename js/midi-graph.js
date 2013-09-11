@@ -365,6 +365,8 @@
 		return graph;
 	}
 
+	MIDIGraph.defaults = defaults;
+
 	// Export the Node constructor
 	if (this.window && !window.exports) {
 		window.MIDIGraph = MIDIGraph;
