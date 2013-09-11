@@ -6,6 +6,7 @@
 	    	ease: 0.6667,
 	    	fadeDuration: 3600,
 	    	fadeLimit: 0,
+	    	scale: 4.982,
 	    	gridColor1: 'hsla(0, 0%, 80%, 0.24)',
 	    	gridColor2: 'hsla(0, 0%, 80%, 0.12)'
 	    };
@@ -55,7 +56,7 @@
 
 	function scaleCanvas(ctx, set) {
 		ctx.setTransform(
-			set.innerWidth / 512,
+			set.innerWidth / (128 * set.scale),
 			0,
 			0,
 			set.innerHeight / 127,
@@ -94,8 +95,8 @@
 
 	function drawStraightNote(ctx, set, n, v) {
 		ctx.lineWidth = 1.5;
-		ctx.fillRect(0.5 + n * 4, 127 - v, 2, v);
-		ctx.strokeRect(0.5 + n * 4, 127 - v, 2, v);
+		ctx.fillRect(0.5 + n * set.scale, 127 - v, set.scale / 2, v);
+		ctx.strokeRect(0.5 + n * set.scale, 127 - v, set.scale / 2, v);
 	}
 
 	function drawBentNote(ctx, set, n, v, p) {
@@ -204,17 +205,20 @@
 		var paddingLeft  = (options.paddingLeft || defaults.paddingLeft) * node.width;
 		var paddingRight = (options.paddingRight || defaults.paddingRight) * node.width;
 		var paddingTop   = (options.paddingTop || defaults.paddingTop) * node.height;
-		
+		var innerWidth   = node.width - paddingLeft - paddingRight;
+		var innerHeight  = node.height - paddingTop;
+
 		return {
 			width:        node.width,
 			height:       node.height,
 			paddingLeft:  paddingLeft,
 			paddingRight: paddingRight,
 			paddingTop:   paddingTop,
-			innerWidth:   node.width - paddingLeft - paddingRight,
-			innerHeight:  node.height - paddingTop,
+			innerWidth:   innerWidth,
+			innerHeight:  innerHeight,
 			gridColor1:   options.gridColor1 || defaults.gridColor1,
-			gridColor2:   options.gridColor2 || defaults.gridColor2
+			gridColor2:   options.gridColor2 || defaults.gridColor2,
+			scale:        innerWidth / innerHeight
 		};
 	}
 
