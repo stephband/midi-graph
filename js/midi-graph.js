@@ -4,26 +4,27 @@
 	    	paddingRight: 0.03125,
 	    	paddingTop:   0.125,
 	    	ease: 0.6667,
-	    	fade: 4000
+	    	fadeDuration: 3600,
+	    	fadeLimit: 0
 	    };
 
 	var colors = [
-	    	[40,  80, 60, 1],
-	    	[28,  80, 60, 1],
-	    	[16,  80, 60, 1],
-	    	[4,   80, 60, 1],
-	    	[352, 80, 60, 1],
-	    	[340, 80, 60, 1],
-	    	[328, 80, 60, 1],
-	    	[316, 80, 60, 1],
-	    	[304, 80, 60, 1],
-	    	[292, 80, 60, 1],
-	    	[280, 80, 60, 1],
-	    	[268, 80, 60, 1],
-	    	[256, 80, 60, 1],
-	    	[244, 80, 60, 1],
-	    	[232, 80, 60, 1],
-	    	[220, 80, 60, 1]
+	    	[220, 56, 68, 1],
+	    	[232, 57, 66, 1],
+	    	[244, 58, 65, 1],
+	    	[256, 60, 62, 1],
+	    	[268, 60, 62, 1],
+	    	[280, 61, 61, 1],
+	    	[292, 62, 61, 1],
+	    	[304, 58, 60, 1],
+	    	[316, 62, 62, 1],
+	    	[328, 64, 62, 1],
+	    	[340, 66, 62, 1],
+	    	[352, 68, 62, 1],
+	    	[4,   71, 61, 1],
+	    	[16,  74, 61, 1],
+	    	[28,  77, 61, 1],
+	    	[40,  80, 60, 1]
 	    ];
 
 	function isNote(data) {
@@ -42,18 +43,12 @@
 		return window.performance.now();
 	}
 
-	function updateOn(node, data) {
-		node.classList.add('on');
-		node.style.height = data[2] + 'px'; //(data[2] * 100 / 127) + '%';
-	}
-
-	function updateOff(node, data) {
-		node.classList.remove('on');
-		node.style.height = 0;
-	}
-
 	function toHSL(h, s, l, a) {
 		return ['hsla(', h, ',', s, '%,', l, '%,', a, ')'].join('');
+	}
+
+	function clearCanvas(ctx, set) {
+		ctx.clearRect(0, 0, set.width, set.height);
 	}
 
 	function scaleCanvas(ctx, set) {
@@ -70,8 +65,23 @@
 		ctx.lineCap = 'round';
 	}
 
-	function clearCanvas(ctx, set) {
-		ctx.clearRect(0, 0, set.width, set.height);
+	function drawGrid(ctx, set) {
+		ctx.save();
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = 'hsla(0, 0%, 80%, 0.25)';
+		ctx.beginPath();
+		ctx.moveTo(0, set.paddingTop + 1);
+		ctx.lineTo(set.width, set.paddingTop + 1);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = 'hsla(0, 0%, 80%, 0.12)';
+		ctx.beginPath();
+		ctx.moveTo(0, set.paddingTop + set.innerHeight / 2);
+		ctx.lineTo(set.width, set.paddingTop + set.innerHeight / 2);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.restore();
 	}
 
 	function drawChannel(ctx, set, c) {
@@ -112,7 +122,7 @@
 	function drawControl(ctx, set, n, v, color) {
 		ctx.save();
 		ctx.strokeStyle = color;
-		ctx.lineWidth = 2;
+		ctx.lineWidth = 1.5;
 		ctx.beginPath();
 		ctx.moveTo(1.5 + n * 4, 127);
 		ctx.lineTo(1.5 + n * 4, 127 + 2.5 - v);
@@ -150,6 +160,7 @@
 
 		ctx.save();
 		clearCanvas(ctx, set);
+		drawGrid(ctx, set);
 		scaleCanvas(ctx, set);
 
 		while (count--) {
@@ -157,6 +168,34 @@
 		}
 
 		ctx.restore();
+	}
+
+	function renderNames(nodes, set, state) {
+		var ch = 16,
+		    active = [],
+		    notes, n;
+
+		while (ch--) {
+			notes = state[ch].notes;
+			n = notes.length;
+
+			while (n--) {
+				if (notes[n]) {
+					active[n] = true;
+				}
+			}
+		}
+
+		n = active.length;
+
+		while (n--) {
+			if (active[n]) {
+				nodes[n].classList.add('on');
+			}
+			else {
+				nodes[n].classList.remove('on');
+			}
+		}
 	}
 
 	function createSettings(options, node) {
@@ -198,15 +237,13 @@
 	function updateCcColor(state, cc, now) {
 		var channel = returnChannel(cc.data) - 1;
 		var color = colors[channel];
-		var fade = (defaults.fade - now + cc.time) / defaults.fade;
+		var fade = (defaults.fadeDuration - now + cc.time) / defaults.fadeDuration;
 
 		if (fade < 0) {
 			return false;
 		}
 
-		//console.log(fade);
-		cc.color = toHSL(color[0], color[1] * fade, color[2], color[3] * (0.2 + 0.8 * fade));
-
+		cc.color = toHSL(color[0], color[1] * fade, color[2], color[3] * (defaults.fadeLimit + (1 - defaults.fadeLimit) * fade));
 		return true;
 	}
 
@@ -235,14 +272,16 @@
 				options.node :
 				document.getElementById('midi-graph') ;
 
-		var nodes = node.querySelectorAll('.note_block');
+		var canvasNode = node.querySelector('.midi_canvas');
+		var notesNode  = node.querySelector('.note_index');
+		var noteNodes = notesNode.querySelectorAll('li');
 
-		if (!node.getContext) {
+		if (!canvasNode.getContext) {
 			throw new Error('options.node must be a canvas element.');
 		}
 
-		var context = node.getContext('2d');
-		var settings = createSettings(options, node);
+		var context = canvasNode.getContext('2d');
+		var settings = createSettings(options, canvasNode);
 		
 		var state = [];
 		var notes = [];
@@ -257,7 +296,8 @@
 			
 			i = notes.length;
 
-			// Animate noteon and noteoff
+			// Look through updated notes to determine which ones need to
+			// continue being animated.
 			while (i--) {
 				if (updateNoteRender(state, notes[i])) {
 					queueRender();
@@ -284,6 +324,7 @@
 			}
 
 			renderGraph(context, settings, state);
+			renderNames(noteNodes, settings, state);
 		}
 
 		function queueRender() {

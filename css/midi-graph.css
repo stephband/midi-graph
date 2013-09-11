@@ -1,76 +1,34 @@
-/* .block */
-
-.note_block {
-	width: 100%;
-	overflow: visible;
-	background-color: #80BDDB;
-	height: 0;
-
-	-webkit-transition-property: height;
-	   -moz-transition-property: height;
-	    -ms-transition-property: height;
-	     -o-transition-property: height;
-	        transition-property: height;
-
-	-webkit-transition-duration: 48ms;
-	   -moz-transition-duration: 48ms;
-	    -ms-transition-duration: 48ms;
-	     -o-transition-duration: 48ms;
-	        transition-duration: 48ms;
-
-	-webkit-transition-timing-function: ease-in;
-	   -moz-transition-timing-function: ease-in;
-	    -ms-transition-timing-function: ease-in;
-	     -o-transition-timing-function: ease-in;
-	        transition-timing-function: ease-in;
-
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
-}
-
-.note_block > .note_text {
-	display: none;
-
-	position: absolute;
-	bottom: -2.5rem;
-	left: 50%;
-	width: 4em;
-	margin-left: -2em;
-
-	font-size: 0.9375rem;
-	text-align: center;
-	line-height: 2.5rem;
-
-	color: #666666;
-}
-
-.note_block.on > .note_text {
-	display: block;
-}
-
-
 /* .index */
 
 .note_index {
-	line-height: 159px;
-	border-bottom: 1px solid #999999;
+	padding-left: 3.125%;
+	padding-right: 3.125%;
+	white-space: nowrap;
 
-	border-bottom: 1px solid #202020;
-	background-color: #444444;
-	box-shadow: inset 0 -8px 120px 20px rgba(0,0,0,0.6);
-
-
-	background-image: -webkit-linear-gradient(bottom, transparent 0%, transparent 63px, rgba(255,255,255,0.12) 63px, transparent 64px, transparent 127px, rgba(255,255,255,0.24) 127px, transparent 128px, transparent 100%);
-	background-image:    -moz-linear-gradient(bottom, transparent 0%, transparent 63px, rgba(255,255,255,0.12) 63px, transparent 64px, transparent 127px, rgba(255,255,255,0.24) 127px, transparent 128px, transparent 100%);
-	background-image:     -ms-linear-gradient(bottom, transparent 0%, transparent 63px, rgba(255,255,255,0.12) 63px, transparent 64px, transparent 127px, rgba(255,255,255,0.24) 127px, transparent 128px, transparent 100%);
-	background-image:      -o-linear-gradient(bottom, transparent 0%, transparent 63px, rgba(255,255,255,0.12) 63px, transparent 64px, transparent 127px, rgba(255,255,255,0.24) 127px, transparent 128px, transparent 100%);
-	background-image:         linear-gradient(to top, transparent 0%, transparent 63px, rgba(255,255,255,0.12) 63px, transparent 64px, transparent 127px, rgba(255,255,255,0.24) 127px, transparent 128px, transparent 100%);
+	/*border: 1px solid #e9e9e9;*/
+	border-bottom-left-radius: 0.5rem;
+	border-bottom-right-radius: 0.5rem;
 }
 
 .note_index > li {
-	width: 0.78125%;
+	font-family: "Andale Mono", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 0.8125rem;
+	line-height: 2rem;
+	visibility: hidden;
+	width: 4.78125%;
+	position: relative;
+	left: -2%;
+	margin-right: -4%;
+	text-align: center;
+	overflow: visible;
+	white-space: nowrap;
 	vertical-align: bottom;
-	padding-left: 1px;
+	color: #666666;
+}
+
+.note_index > li.on {
+	visibility: visible;
 }
 
 /* canvas */
@@ -81,16 +39,8 @@
 	height: auto;
 	border-bottom: 1px solid #202020;
 	background-color: #444444;
-	box-shadow: inset 0 -8px 120px 20px rgba(0,0,0,0.6);
-
-
-	background-image: -webkit-linear-gradient(bottom, transparent 0%, transparent 63px, rgba(255,255,255,0.12) 63px, transparent 64px, transparent 127px, rgba(255,255,255,0.24) 127px, transparent 128px, transparent 100%);
-	background-image:    -moz-linear-gradient(bottom, transparent 0%, transparent 63px, rgba(255,255,255,0.12) 63px, transparent 64px, transparent 127px, rgba(255,255,255,0.24) 127px, transparent 128px, transparent 100%);
-	background-image:     -ms-linear-gradient(bottom, transparent 0%, transparent 63px, rgba(255,255,255,0.12) 63px, transparent 64px, transparent 127px, rgba(255,255,255,0.24) 127px, transparent 128px, transparent 100%);
-	background-image:      -o-linear-gradient(bottom, transparent 0%, transparent 63px, rgba(255,255,255,0.12) 63px, transparent 64px, transparent 127px, rgba(255,255,255,0.24) 127px, transparent 128px, transparent 100%);
-	background-image:         linear-gradient(to top, transparent 0%, transparent 63px, rgba(255,255,255,0.12) 63px, transparent 64px, transparent 127px, rgba(255,255,255,0.24) 127px, transparent 128px, transparent 100%);
+	box-shadow: inset 0 -8px 160px 20px rgba(0,0,0,0.67);
 
 	border-top-left-radius: 0.5rem;
 	border-top-right-radius: 0.5rem;
-
 }
