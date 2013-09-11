@@ -4,8 +4,8 @@
 	    	paddingRight: 0.03125,
 	    	paddingTop:   0.125,
 	    	ease: 0.6667,
-	    	fadeDuration: 3600,
-	    	fadeLimit: 0,
+	    	fadeDuration: 6000,
+	    	fadeLimit: 0.24,
 	    	scale: 4.982,
 	    	gridColor1: 'hsla(0, 0%, 60%, 0.24)',
 	    	gridColor2: 'hsla(0, 0%, 40%, 0.12)'
@@ -29,6 +29,7 @@
 	    	[28,  77, 61, 1],
 	    	[40,  80, 60, 1]
 	    ];
+
 
 	function isNote(data) {
 		return data[0] > 127 && data[0] < 160 ;
