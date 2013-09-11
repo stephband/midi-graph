@@ -7,8 +7,8 @@
 	    	fadeDuration: 3600,
 	    	fadeLimit: 0,
 	    	scale: 4.982,
-	    	gridColor1: 'hsla(0, 0%, 80%, 0.24)',
-	    	gridColor2: 'hsla(0, 0%, 80%, 0.12)'
+	    	gridColor1: 'hsla(0, 0%, 60%, 0.24)',
+	    	gridColor2: 'hsla(0, 0%, 40%, 0.12)'
 	    };
 
 	var colors = [
