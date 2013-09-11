@@ -95,13 +95,13 @@
 	}
 
 	function drawStraightNote(ctx, set, n, v) {
-		ctx.lineWidth = 1.5;
+		ctx.lineWidth = 2;
 		ctx.fillRect(0.5 + n * set.scale, 127 - v, set.scale / 2, v);
 		ctx.strokeRect(0.5 + n * set.scale, 127 - v, set.scale / 2, v);
 	}
 
 	function drawBentNote(ctx, set, n, v, p) {
-		ctx.lineWidth = 1.5;
+		ctx.lineWidth = 2;
 		ctx.beginPath();
 		ctx.moveTo(0.5 + n * 4, 127);
 		ctx.bezierCurveTo(0.5 + n * 4, 127 - v * 0.25,
@@ -190,7 +190,7 @@
 			}
 		}
 
-		n = active.length;
+		n = 128;//active.length;
 
 		while (n--) {
 			if (active[n]) {
