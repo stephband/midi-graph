@@ -1,13 +1,21 @@
 <link rel="stylesheet" href="../bolt/css/bolt.classes.css" />
 <link rel="stylesheet" href="css/midi-graph.css" />
 
+<style>
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+	}
+</style>
+
 <h1>MIDI Graph</h1>
 
 <p>Open the console to see tests</p>
 
 <!-- Sometime soon, we're going to replace this list with a canvas -->
 <div class="midi-graph" id="midi-graph">
-	<canvas class="midi_canvas" id="midi-canvas" width="1680" height="320"></canvas>
+	<canvas class="midi_canvas" id="midi-canvas" width="1920" height="320"></canvas>
 	
 	<ul class="note_index inline_index index">
 		 <li>C</li
@@ -204,6 +212,37 @@ console.group('Testing MIDIGraph...');
 		midiGraph.in({ data: [156,127,127] });
 	}, 1500);
 
+	var l = 128,
+	    n = -1;
+
+	while (++n < l) {
+		(function(n, p) {
+			setTimeout(function() {
+				midiGraph.in({ data: [p, n, 127] });
+			}, parseInt(n * 20));
+
+			setTimeout(function() {
+				midiGraph.in({ data: [p - 16, n, 127] });
+			}, parseInt(n * 20 + 300));
+		})(n, 144 + (n % 16));
+	}
+
+	var l = 128,
+	    n = -1;
+
+	while (++n < l) {
+		(function(n, p) {
+			setTimeout(function() {
+				midiGraph.in({ data: [p, n, 127] });
+			}, parseInt(n * 40));
+
+			setTimeout(function() {
+				midiGraph.in({ data: [p, n, 0] });
+			}, parseInt(n * 40 + 300));
+		})(n, 176 + (n % 16));
+	}
+
+
 	navigator
 	.requestMIDIAccess()
 	.then(function(midi) {
@@ -211,14 +250,13 @@ console.group('Testing MIDIGraph...');
 		midi.inputs().forEach(function(input) {
 			input.addEventListener('midimessage', midiGraph.in);
 			input.onmidimessage = function(e) {
-				//console.log(e);
+				console.log(e);
 			};
 		});
 	}, function(error) {
 		console.log(error);
 	});
 })();
-
 
 console.log('...tests complete');
 console.groupEnd();

@@ -1,12 +1,11 @@
 (function(undefined) {
 	var defaults = {
-	    	paddingLeft:  0.03125,
-	    	paddingRight: 0.03125,
+	    	paddingLeft:  1 / 30,
+	    	paddingRight: 1 / 30,
 	    	paddingTop:   0.125,
 	    	ease: 0.6667,
 	    	fadeDuration: 6000,
 	    	fadeLimit: 0.24,
-	    	scale: 4.982,
 	    	gridColor1: 'hsla(0, 0%, 60%, 0.24)',
 	    	gridColor2: 'hsla(0, 0%, 40%, 0.12)'
 	    };
@@ -57,7 +56,7 @@
 
 	function scaleCanvas(ctx, set) {
 		ctx.setTransform(
-			set.innerWidth / (128 * set.scale),
+			set.innerWidth / (128 * set.xblock),
 			0,
 			0,
 			set.innerHeight / 127,
@@ -95,23 +94,28 @@
 	}
 
 	function drawStraightNote(ctx, set, n, v) {
-		ctx.lineWidth = 2;
-		ctx.fillRect(0.5 + n * set.scale, 127 - v, set.scale / 2, v);
-		ctx.strokeRect(0.5 + n * set.scale, 127 - v, set.scale / 2, v);
+		ctx.lineWidth = set.xunit * 6;
+		console.log(set.xblock);
+		ctx.fillRect(set.xunit * 3 + n * set.xblock, 127 - v, 6 * set.xunit, v);
+		ctx.strokeRect(set.xunit * 3 + n * set.xblock, 127 - v, 6 * set.xunit, v);
 	}
 
 	function drawBentNote(ctx, set, n, v, p) {
-		ctx.lineWidth = 2;
+		var xl = set.xunit * 3 + n * set.xblock;
+		var xr = set.xunit * 9 + n * set.xblock;
+
+		ctx.lineWidth = set.xunit * 6;
 		ctx.beginPath();
-		ctx.moveTo(0.5 + n * 4, 127);
-		ctx.bezierCurveTo(0.5 + n * 4, 127 - v * 0.25,
-						  0.5 + n * 4, 127 - v * 0.8,
-						  0.5 + (n + p) * 4, 127 - v);
+		ctx.moveTo(xl, 127);
+		ctx.bezierCurveTo(xl, 127 - v * 0.25,
+		                  xl, 127 - v * 0.8,
+		                  set.xunit * 3 + (n + p) * set.xblock, 127 - v);
+
 		// TODO: The angle of the bar top could be worked out better.
-		ctx.lineTo(2.5 + (n + p) * 4, 127 - v + p / 6);
-		ctx.bezierCurveTo(2.5 + n * 4, 127 - v * 0.8,
-						  2.5 + n * 4, 127 - v * 0.25,
-						  2.5 + n * 4, 127);
+		ctx.lineTo(set.xunit * 9 + (n + p) * set.xblock, 127 - v + p / 6);
+		ctx.bezierCurveTo(xr, 127 - v * 0.8,
+		                  xr, 127 - v * 0.25,
+		                  xr, 127);
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
@@ -124,13 +128,15 @@
 	}
 
 	function drawControl(ctx, set, n, v, color) {
+		var xc = set.xunit * 6 + n * set.xblock;
+
 		ctx.save();
 		ctx.strokeStyle = color;
-		ctx.lineWidth = 1.5;
+		ctx.lineWidth = set.xunit * 4;
 		ctx.beginPath();
-		ctx.moveTo(1.5 + n * 4, 127);
-		ctx.lineTo(1.5 + n * 4, 127 + 2.5 - v);
-		ctx.arc(1.5 + n * 4, 127 - v, 2.5, 0.5 * Math.PI, 2.5 * Math.PI, false);
+		ctx.moveTo(xc, 127);
+		ctx.lineTo(xc, 127 + 3 - v);
+		ctx.arc(xc, 127 - v, 3, 0.5 * Math.PI, 2.5 * Math.PI, false);
 		ctx.stroke();
 		ctx.closePath();
 		ctx.restore();
@@ -219,7 +225,8 @@
 			innerHeight:  innerHeight,
 			gridColor1:   options.gridColor1 || defaults.gridColor1,
 			gridColor2:   options.gridColor2 || defaults.gridColor2,
-			scale:        innerWidth / innerHeight
+			xblock:       innerWidth / innerHeight,
+			xunit:        128 / innerHeight
 		};
 	}
 
