@@ -6,7 +6,7 @@
 <p>Open the console to see tests</p>
 
 <!-- Sometime soon, we're going to replace this list with a canvas -->
-<canvas class="midi_canvas" id="midi-canvas"></canvas>
+<canvas class="midi_canvas" id="midi-canvas" width="2048" height="512"></canvas>
 
 <br><br>
 
@@ -660,7 +660,7 @@
 console.group('Testing MIDIGraph...');
 
 (function() {
-	var node = document.getElementById('midi-graph');
+	var node = document.getElementById('midi-canvas');
 
 	var midiGraph = MIDIGraph({
 		node: node
@@ -674,7 +674,42 @@ console.group('Testing MIDIGraph...');
 
 	console.assert(node.querySelectorAll('.on').length === 2,
 	              'There should be 2 notes active');
+
+	setTimeout(function() {
+		midiGraph.in({ data: [144,60,0] });
+		midiGraph.in({ data: [148,60,80] });
+		midiGraph.in({ data: [148,40,127] });
+		midiGraph.in({ data: [152,20,80] });
+	}, 500);
+
+	setTimeout(function() {
+		midiGraph.in({ data: [176,64,0] });
+		midiGraph.in({ data: [176,67,2] });
+		midiGraph.in({ data: [176,41,127] });
+		midiGraph.in({ data: [176,64,80] });
+	}, 1000);
+
+	setTimeout(function() {
+		midiGraph.in({ data: [176,67,70] });
+		midiGraph.in({ data: [176,41,0] });
+		midiGraph.in({ data: [176,64,0] });
+	}, 1500);
+
+	navigator
+	.requestMIDIAccess()
+	.then(function(midi) {
+		console.log('YEAH');
+		midi.inputs().forEach(function(input) {
+			input.addEventListener('midimessage', midiGraph.in);
+			input.onmidimessage = function(e) {
+				//console.log(e);
+			};
+		});
+	}, function(error) {
+		console.log(error);
+	});
 })();
+
 
 console.log('...tests complete');
 console.groupEnd();
