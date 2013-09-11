@@ -95,7 +95,6 @@
 
 	function drawStraightNote(ctx, set, n, v) {
 		ctx.lineWidth = set.xunit * 6;
-		console.log(set.xblock);
 		ctx.fillRect(set.xunit * 3 + n * set.xblock, 127 - v, 6 * set.xunit, v);
 		ctx.strokeRect(set.xunit * 3 + n * set.xblock, 127 - v, 6 * set.xunit, v);
 	}
