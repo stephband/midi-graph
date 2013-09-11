@@ -5,7 +5,9 @@
 	    	paddingTop:   0.125,
 	    	ease: 0.6667,
 	    	fadeDuration: 3600,
-	    	fadeLimit: 0
+	    	fadeLimit: 0,
+	    	gridColor1: 'hsla(0, 0%, 80%, 0.24)',
+	    	gridColor2: 'hsla(0, 0%, 80%, 0.12)'
 	    };
 
 	var colors = [
@@ -68,14 +70,14 @@
 	function drawGrid(ctx, set) {
 		ctx.save();
 		ctx.lineWidth = 2;
-		ctx.strokeStyle = 'hsla(0, 0%, 80%, 0.25)';
+		ctx.strokeStyle = set.gridColor1;
 		ctx.beginPath();
 		ctx.moveTo(0, set.paddingTop + 1);
 		ctx.lineTo(set.width, set.paddingTop + 1);
 		ctx.stroke();
 		ctx.closePath();
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = 'hsla(0, 0%, 80%, 0.12)';
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = set.gridColor2;
 		ctx.beginPath();
 		ctx.moveTo(0, set.paddingTop + set.innerHeight / 2);
 		ctx.lineTo(set.width, set.paddingTop + set.innerHeight / 2);
@@ -210,7 +212,9 @@
 			paddingRight: paddingRight,
 			paddingTop:   paddingTop,
 			innerWidth:   node.width - paddingLeft - paddingRight,
-			innerHeight:  node.height - paddingTop
+			innerHeight:  node.height - paddingTop,
+			gridColor1:   options.gridColor1 || defaults.gridColor1,
+			gridColor2:   options.gridColor2 || defaults.gridColor2
 		};
 	}
 
