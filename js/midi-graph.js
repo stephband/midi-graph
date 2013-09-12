@@ -252,7 +252,7 @@
 			gridColor2:   options.gridColor2 || defaults.gridColor2,
 			xblock:       innerWidth / innerHeight,
 			xunit:        128 / innerHeight,
-			colors:       col
+			colors:       col || colors
 		};
 	}
 
