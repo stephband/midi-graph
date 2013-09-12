@@ -122,12 +122,12 @@
 		ctx.beginPath();
 		ctx.moveTo(xl, 127);
 		ctx.bezierCurveTo(xl, 127 - v * 0.12,
-		                  xl, 127 - v * 0.33,
+		                  xl, 127 - v * 0.40,
 		                  set.xunit * 3 + (n + p) * set.xblock, 127 - v);
 
 		// TODO: The angle of the bar top could be worked out better.
 		ctx.lineTo(set.xunit * 9 + (n + p) * set.xblock, 127 - v + p / 6);
-		ctx.bezierCurveTo(xr, 127 - v * 0.33,
+		ctx.bezierCurveTo(xr, 127 - v * 0.40,
 		                  xr, 127 - v * 0.12,
 		                  xr, 127);
 		ctx.fill();
