@@ -287,12 +287,12 @@
 				options.node :
 				document.getElementById('midi-graph') ;
 
-		var canvasNode = node.querySelector('.midi_canvas');
+		var canvasNode = node.querySelector('canvas');
 		var notesNode  = node.querySelector('.note_index');
 		var noteNodes = notesNode.querySelectorAll('li');
 
 		if (!canvasNode.getContext) {
-			throw new Error('options.node must be a canvas element.');
+			throw new Error('options.node must contain a canvas element.');
 		}
 
 		var context = canvasNode.getContext('2d');
@@ -302,6 +302,8 @@
 		var notes = [];
 		var count = 16;
 		var queued = false;
+
+		console.log('MIDIGraph instance created', node, graph);
 
 		function render(now) {
 			var c = 16,
