@@ -41,6 +41,18 @@
 		return data[0] > 175 && data[0] < 192 ;
 	}
 
+	function isPitch(data) {
+		return data[0] > 223 && data[0] < 240 ;
+	}
+
+	function pitchToInt(data) {
+		return (data[2] << 7 | data[1]) - 8192 ;
+	}
+
+	function pitchToFloat(data, range) {
+		return range * pitchToInt(data) / 8191 ;
+	}
+
 	function returnChannel(data) {
 		return data[0] % 16 + 1;
 	}
@@ -109,14 +121,14 @@
 		ctx.lineWidth = set.xunit * 6;
 		ctx.beginPath();
 		ctx.moveTo(xl, 127);
-		ctx.bezierCurveTo(xl, 127 - v * 0.25,
-		                  xl, 127 - v * 0.8,
+		ctx.bezierCurveTo(xl, 127 - v * 0.12,
+		                  xl, 127 - v * 0.33,
 		                  set.xunit * 3 + (n + p) * set.xblock, 127 - v);
 
 		// TODO: The angle of the bar top could be worked out better.
 		ctx.lineTo(set.xunit * 9 + (n + p) * set.xblock, 127 - v + p / 6);
-		ctx.bezierCurveTo(xr, 127 - v * 0.8,
-		                  xr, 127 - v * 0.25,
+		ctx.bezierCurveTo(xr, 127 - v * 0.33,
+		                  xr, 127 - v * 0.12,
 		                  xr, 127);
 		ctx.fill();
 		ctx.stroke();
@@ -397,6 +409,12 @@
 
 			if (isControl(e.data)) {
 				updateControl(state, e.data);
+				queueRender(render);
+				return;
+			}
+
+			if (isPitch(e.data)) {
+				state[returnChannel(e.data) - 1].pitch = pitchToFloat(e.data, options.range || 2);
 				queueRender(render);
 				return;
 			}
