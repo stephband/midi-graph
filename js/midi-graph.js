@@ -30,6 +30,9 @@
 	    ];
 
 
+	var rhsl = /^(?:hsl\()?\s?(\d{1,3}(?:\.\d+)?)\s?,\s?(\d{1,3}(?:\.\d+)?)%\s?,\s?(\d{1,3}(?:\.\d+)?)%\s?\)?$/;
+
+
 	function isNote(data) {
 		return data[0] > 127 && data[0] < 160 ;
 	}
@@ -88,7 +91,7 @@
 	}
 
 	function drawChannel(ctx, set, c) {
-		var hsla = toHSL.apply(this, colors[c]);
+		var hsla = toHSL.apply(this, set.colors[c]);
 		ctx.fillStyle = hsla;
 		ctx.strokeStyle = hsla;
 	}
@@ -207,12 +210,35 @@
 		}
 	}
 
+	function toInteger(str) {
+		return parseInt(str, 10);
+	}
+
+	function hslToArray(hsl) {
+		return rhsl.exec(hsl).splice(1, 3).map(toInteger);
+	}
+
 	function createSettings(options, node) {
 		var paddingLeft  = (options.paddingLeft || defaults.paddingLeft) * node.width;
 		var paddingRight = (options.paddingRight || defaults.paddingRight) * node.width;
 		var paddingTop   = (options.paddingTop || defaults.paddingTop) * node.height;
 		var innerWidth   = node.width - paddingLeft - paddingRight;
 		var innerHeight  = node.height - paddingTop;
+
+		if (options.colors) {
+			var col = options.colors.map(hslToArray);
+			var l = col.length;
+
+			// Populate missing fields with colors from default colors array.
+			while (l--) {
+				if (col[l] === undefined) {
+					col[l] = colors[l];
+				}
+				else {
+					col[l].push(1);
+				}
+			}
+		}
 
 		return {
 			width:        node.width,
@@ -225,7 +251,8 @@
 			gridColor1:   options.gridColor1 || defaults.gridColor1,
 			gridColor2:   options.gridColor2 || defaults.gridColor2,
 			xblock:       innerWidth / innerHeight,
-			xunit:        128 / innerHeight
+			xunit:        128 / innerHeight,
+			colors:       col
 		};
 	}
 
@@ -249,9 +276,9 @@
 		return true;
 	}
 
-	function updateCcColor(state, cc, now) {
+	function updateCcColor(state, set, cc, now) {
 		var channel = returnChannel(cc.data) - 1;
-		var color = colors[channel];
+		var color = set.colors[channel];
 		var fade = (defaults.fadeDuration - now + cc.time) / defaults.fadeDuration;
 
 		if (fade < 0) {
@@ -334,7 +361,7 @@
 
 					if (!cc) { continue; }
 
-					if (updateCcColor(state, cc, now)) {
+					if (updateCcColor(state, settings, cc, now)) {
 						queueRender();
 					}
 				}
